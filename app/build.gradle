@@ -1,0 +1,115 @@
+plugins {
+    id("com.android.application")
+    id("kotlin-android")
+    id("kotlin-parcelize")
+    id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
+}
+
+android {
+    namespace 'com.leagueofdevs.demomoviesearch'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.leagueofdevs.demomoviesearch"
+        minSdk 28
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "API_KEY", "\"${marvelPublicKey}\"")
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    packagingOptions {
+        exclude 'META-INF/atomicfu.kotlin_module'
+    }
+
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.4.2'
+    }
+
+    packagingOptions {
+        resources.excludes.add("META-INF/DEPENDENCIES")
+        resources.excludes.add("META-INF/gradle/incremental.annotation.processors")
+        resources.excludes += "/META-INF/LGPL2.1"
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation 'androidx.paging:paging-compose:1.0.0-alpha18'
+    def composeBom = platform('androidx.compose:compose-bom:2023.01.00')
+    implementation(composeBom)
+    androidTestImplementation(composeBom)
+
+    // UI
+    implementation 'androidx.compose.ui:ui:1.4.0'
+    implementation 'androidx.compose.material:material:1.4.0'
+    implementation "androidx.compose.material:material-icons-extended"
+    implementation "androidx.navigation:navigation-compose:$rootProject.navVersion"
+    implementation "com.google.android.material:material:$rootProject.materialVersion"
+    implementation "androidx.activity:activity-compose:$rootProject.activityComposeVersion"
+    // Android Studio Preview support
+    implementation 'androidx.compose.ui:ui-tooling-preview'
+    debugImplementation 'androidx.compose.ui:ui-tooling'
+    implementation("io.coil-kt:coil-compose:$coilComposeVersion")
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$rootProject.viewModelComposeVersion"
+
+    // Room components
+    implementation "androidx.room:room-ktx:$rootProject.roomVersion"
+    kapt "androidx.room:room-compiler:$rootProject.roomVersion"
+    androidTestImplementation "androidx.room:room-testing:$rootProject.roomVersion"
+
+    // Lifecycle components
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$rootProject.lifecycleVersion"
+
+    // Hilt
+    implementation("androidx.hilt:hilt-work:$rootProject.hiltVersion")
+    kapt("androidx.hilt:hilt-compiler:$rootProject.hiltVersion")
+    implementation "com.google.dagger:hilt-android:2.44"
+    implementation "com.google.dagger:hilt-android-compiler:2.44"
+    implementation "androidx.hilt:hilt-navigation-compose:1.1.0-alpha01"
+    implementation("com.google.dagger:hilt-android-testing:2.44")
+
+    // Kotlin components
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$rootProject.coroutines"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutines"
+
+    //Retrofit
+    implementation(["com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion",
+                    "com.squareup.okhttp3:okhttp:$rootProject.okhttpVersion",
+                    "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion",
+                    "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttpVersion"])
+
+    //Paging
+    implementation("androidx.paging:paging-runtime-ktx:$pagingVersion")
+
+    // Testing
+    testImplementation "junit:junit:$rootProject.junitVersion"
+    androidTestImplementation "androidx.arch.core:core-testing:$rootProject.coreTestingVersion"
+    androidTestImplementation("androidx.test.espresso:espresso-core:$rootProject.espressoVersion", {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    androidTestImplementation "androidx.test.ext:junit:$rootProject.androidxJunitVersion"
+    // UI Tests
+    androidTestImplementation 'androidx.compose.ui:ui-test-junit4'
+    debugImplementation 'androidx.compose.ui:ui-test-manifest'
+}

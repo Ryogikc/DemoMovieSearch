@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Demo MovieSearch</string>
+    <string name="title_search">Search your title</string>
+    <string name="title_favorites">Your favorites</string>
+    <string name="search_movie">Movies</string>
+    <string name="search_series">Series</string>
+    <string name="bottom_navigation_home">Home</string>
+    <string name="bottom_navigation_favorites">Favorites</string>
+    <string name="noneImage">N/A</string>
+</resources>
