@@ -31,9 +31,6 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    packagingOptions {
-        exclude 'META-INF/atomicfu.kotlin_module'
-    }
 
     buildFeatures {
         compose true
@@ -43,9 +40,11 @@ android {
     }
 
     packagingOptions {
+        resources {
+            excludes += ['/META-INF/LGPL2.1', 'META-INF/atomicfu.kotlin_module']
+        }
         resources.excludes.add("META-INF/DEPENDENCIES")
         resources.excludes.add("META-INF/gradle/incremental.annotation.processors")
-        resources.excludes += "/META-INF/LGPL2.1"
     }
 
     kotlinOptions {

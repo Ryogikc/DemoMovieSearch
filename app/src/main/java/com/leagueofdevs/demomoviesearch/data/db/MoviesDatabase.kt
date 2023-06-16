@@ -8,7 +8,7 @@ import com.leagueofdevs.demomoviesearch.data.FavoriteMovie
 import com.leagueofdevs.demomoviesearch.data.FavoriteMovieDao
 
 @Database(entities = [FavoriteMovie::class], version = 1, exportSchema = false)
-public abstract class MoviesDatabase : RoomDatabase(){
+abstract class MoviesDatabase : RoomDatabase(){
     abstract fun movieDao(): FavoriteMovieDao
 
     companion object {

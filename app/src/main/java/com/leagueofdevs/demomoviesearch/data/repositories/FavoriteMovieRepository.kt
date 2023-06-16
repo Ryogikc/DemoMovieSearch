@@ -21,4 +21,7 @@ class FavoriteMovieRepository @Inject constructor(
     }
 
     fun getFavoriteMovies() = favoriteMovieDao.getFavoriteMovies()
+
+    suspend fun isMovieFavorite(imdbID: String) = favoriteMovieDao.isFavoriteMovie(imdbID)
+
 }

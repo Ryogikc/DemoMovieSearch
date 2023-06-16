@@ -1,5 +1,6 @@
 package com.leagueofdevs.demomoviesearch.ui
 
+import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import com.leagueofdevs.demomoviesearch.data.FavoriteMovie
 import com.leagueofdevs.demomoviesearch.data.repositories.FavoriteMovieRepository
@@ -22,6 +23,11 @@ class FavoritesViewModel @Inject internal constructor(
         plot: String,
         poster: String
     ) {
-        favoriteMovieRepository.createFavoriteMovie(imdbId, title, genre, plot, poster)
+
+        if(favoriteMovieRepository.isMovieFavorite(imdbId)) {
+            // variable de estado que ya existe
+        } else {
+            favoriteMovieRepository.createFavoriteMovie(imdbId, title, genre, plot, poster)
+        }
     }
 }

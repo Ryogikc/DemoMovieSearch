@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import javax.inject.Inject
+import android.util.Log
 
 @HiltViewModel
 class GalleryViewModel @Inject constructor(
@@ -23,6 +24,7 @@ class GalleryViewModel @Inject constructor(
     var titleToSearch by mutableStateOf("")
 
     fun searchByMovie() {
+        Log.e("", "CALL TO API")
         _uiState.update { currentState ->
             currentState.copy(
                 list = repository.getSearchResultStream(titleToSearch, true).cachedIn(viewModelScope)
@@ -31,6 +33,7 @@ class GalleryViewModel @Inject constructor(
     }
 
     fun searchBySeries() {
+        Log.e("", "CALL TO API")
         _uiState.update { currentState ->
             currentState.copy(
                 list = repository.getSearchResultStream(titleToSearch, false).cachedIn(viewModelScope)

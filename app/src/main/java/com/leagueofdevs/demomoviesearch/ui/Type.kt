@@ -24,8 +24,8 @@ private val fontFamilyRaleway = FontFamily(
     )
 )
 
-val typography = Typography(
-    defaultFontFamily = fontFamilyRaleway,
+val typography =
+    = fontFamilyRaleway,
     h2 = TextStyle(
         fontWeight = FontWeight.Bold,
         fontSize = 36.sp,
