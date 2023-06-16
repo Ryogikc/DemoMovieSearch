@@ -16,6 +16,7 @@ fun FavoriteMovieGrid(
     favoritesList: List<FavoriteMovie>,
     modifier: Modifier = Modifier,
 ) {
+    LazyVerticalGrid(
         columns = GridCells.Fixed(2),
         contentPadding = PaddingValues(horizontal = 8.dp, vertical = 8.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp),
