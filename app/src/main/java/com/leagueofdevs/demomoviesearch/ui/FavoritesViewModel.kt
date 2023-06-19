@@ -1,9 +1,9 @@
 package com.leagueofdevs.demomoviesearch.ui
 
-import android.widget.Toast
 import androidx.lifecycle.ViewModel
-import com.leagueofdevs.demomoviesearch.data.FavoriteMovie
+import com.leagueofdevs.demomoviesearch.data.FavoriteMovieEntity
 import com.leagueofdevs.demomoviesearch.data.repositories.FavoriteMovieRepository
+import com.leagueofdevs.demomoviesearch.domain.FavoriteMovie
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject

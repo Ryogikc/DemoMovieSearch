@@ -3,7 +3,7 @@ package com.leagueofdevs.demomoviesearch.data
 import androidx.room.*
 
 @Entity(tableName = "favorite_movies",)
-data class FavoriteMovie(
+data class FavoriteMovieEntity(
     @PrimaryKey @ColumnInfo(name = "imdbID") val imdbID: String,
     @ColumnInfo(name = "title") val title: String,
     @ColumnInfo(name = "genre") val genre: String,

@@ -1,7 +1,11 @@
 package com.leagueofdevs.demomoviesearch.ui
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -16,7 +20,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.leagueofdevs.demomoviesearch.R
-import com.leagueofdevs.demomoviesearch.data.FavoriteMovie
+import com.leagueofdevs.demomoviesearch.domain.FavoriteMovie
 
 @Composable
 fun FavoriteItem(
@@ -49,7 +53,8 @@ fun FavoriteItem(
             )
             Image(
                 painter = painterResource(id = R.drawable.ic_favorite_marked),
-                contentDescription = null, modifier = Modifier.padding(horizontal = 6.dp))
+                contentDescription = null, modifier = Modifier.padding(horizontal = 6.dp)
+            )
             Text(
                 text = favoriteMovie.title,
                 textAlign = TextAlign.Center,

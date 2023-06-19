@@ -4,10 +4,10 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.leagueofdevs.demomoviesearch.data.FavoriteMovie
+import com.leagueofdevs.demomoviesearch.data.FavoriteMovieEntity
 import com.leagueofdevs.demomoviesearch.data.FavoriteMovieDao
 
-@Database(entities = [FavoriteMovie::class], version = 1, exportSchema = false)
+@Database(entities = [FavoriteMovieEntity::class], version = 1, exportSchema = false)
 abstract class MoviesDatabase : RoomDatabase(){
     abstract fun movieDao(): FavoriteMovieDao
 

@@ -1,7 +1,7 @@
 package com.leagueofdevs.demomoviesearch.ui
 
-import com.leagueofdevs.demomoviesearch.data.FavoriteMovie
+import com.leagueofdevs.demomoviesearch.data.FavoriteMovieEntity
 
 data class FavoritesUiState(
-    val favoritesList: List<FavoriteMovie> = emptyList(),
+    val favoritesList: List<FavoriteMovieEntity> = emptyList(),
 )

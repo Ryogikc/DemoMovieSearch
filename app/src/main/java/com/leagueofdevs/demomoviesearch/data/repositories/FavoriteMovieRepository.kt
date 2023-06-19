@@ -1,7 +1,11 @@
 package com.leagueofdevs.demomoviesearch.data.repositories
 
-import com.leagueofdevs.demomoviesearch.data.FavoriteMovie
+import com.leagueofdevs.demomoviesearch.data.FavoriteMovieEntity
 import com.leagueofdevs.demomoviesearch.data.FavoriteMovieDao
+import com.leagueofdevs.demomoviesearch.domain.FavoriteMovie
+import com.leagueofdevs.demomoviesearch.domain.toDomain
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -16,11 +20,14 @@ class FavoriteMovieRepository @Inject constructor(
         plot: String,
         poster: String,
     ) {
-        val favoriteMovie = FavoriteMovie(imdbID, title, genre, plot, poster)
-        favoriteMovieDao.insertFavoriteMovie(favoriteMovie)
+        val favoriteMovieEntity = FavoriteMovieEntity(imdbID, title, genre, plot, poster)
+        favoriteMovieDao.insertFavoriteMovie(favoriteMovieEntity)
     }
 
-    fun getFavoriteMovies() = favoriteMovieDao.getFavoriteMovies()
+    fun getFavoriteMovies(): Flow<List<FavoriteMovie>> {
+        val response: Flow<List<FavoriteMovieEntity>> = favoriteMovieDao.getFavoriteMovies()
+        return response.map { it.map { flow -> flow.toDomain() } }
+    }
 
     suspend fun isMovieFavorite(imdbID: String) = favoriteMovieDao.isFavoriteMovie(imdbID)
 
