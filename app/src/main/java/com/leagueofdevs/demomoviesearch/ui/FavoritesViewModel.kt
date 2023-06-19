@@ -1,17 +1,19 @@
 package com.leagueofdevs.demomoviesearch.ui
 
 import androidx.lifecycle.ViewModel
-import com.leagueofdevs.demomoviesearch.data.repositories.FavoriteMovieRepository
+import com.leagueofdevs.demomoviesearch.domain.CreateFavoriteMovieUseCase
 import com.leagueofdevs.demomoviesearch.domain.FavoriteMovie
 import com.leagueofdevs.demomoviesearch.domain.GetFavoriteMoviesUseCase
+import com.leagueofdevs.demomoviesearch.domain.IsMovieFavoriteUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 @HiltViewModel
 class FavoritesViewModel @Inject internal constructor(
-    private val favoriteMovieRepository: FavoriteMovieRepository,
-    getFavoriteMoviesUseCase: GetFavoriteMoviesUseCase
+    getFavoriteMoviesUseCase: GetFavoriteMoviesUseCase,
+    private val isFavoriteMovieUseCase: IsMovieFavoriteUseCase,
+    private val createFavoriteMovieUseCase: CreateFavoriteMovieUseCase,
 ) : ViewModel() {
 
     val favoriteMovieList: Flow<List<FavoriteMovie>> = getFavoriteMoviesUseCase()
@@ -24,10 +26,10 @@ class FavoritesViewModel @Inject internal constructor(
         poster: String
     ) {
 
-        if(favoriteMovieRepository.isMovieFavorite(imdbId)) {
+        if(isFavoriteMovieUseCase(imdbId)) {
             // variable de estado que ya existe
         } else {
-            favoriteMovieRepository.createFavoriteMovie(imdbId, title, genre, plot, poster)
+            createFavoriteMovieUseCase(imdbId, title, genre, plot, poster)
         }
     }
 }
