@@ -23,7 +23,7 @@ class GalleryViewModel @Inject constructor(
     val uiState: StateFlow<GalleryUiState> = _uiState.asStateFlow()
     var titleToSearch by mutableStateOf("")
 
-    suspend fun searchByMovie() {
+    fun searchByMovie() {
         Log.e("", "CALL TO API")
         _uiState.update { currentState ->
             currentState.copy(
@@ -32,7 +32,7 @@ class GalleryViewModel @Inject constructor(
         }
     }
 
-    suspend fun searchBySeries() {
+    fun searchBySeries() {
         Log.e("", "CALL TO API")
         _uiState.update { currentState ->
             currentState.copy(
