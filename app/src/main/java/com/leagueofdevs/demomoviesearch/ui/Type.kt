@@ -24,30 +24,34 @@ private val fontFamilyRaleway = FontFamily(
     )
 )
 
-val typography =
-    = fontFamilyRaleway,
+val typography = Typography(
     h2 = TextStyle(
         fontWeight = FontWeight.Bold,
         fontSize = 36.sp,
+        fontFamily = fontFamilyRaleway,
         letterSpacing = 0.sp
     ),
     h3 = TextStyle(
         fontWeight = FontWeight.Bold,
         fontSize = 24.sp,
+        fontFamily = fontFamilyRaleway,
         letterSpacing = 0.sp
     ),
     h4 = TextStyle(
         fontWeight = FontWeight.Bold,
         fontSize = 12.sp,
+        fontFamily = fontFamilyRaleway,
         letterSpacing = 0.sp
     ),
     body1 = TextStyle(
         fontSize = 14.sp,
+        fontFamily = fontFamilyRaleway,
         letterSpacing = 0.sp
     ),
     body2 = TextStyle(
         fontSize = 14.sp,
         letterSpacing = 0.sp,
+        fontFamily = fontFamilyRaleway,
         color = Color.Black
     ),
 )
