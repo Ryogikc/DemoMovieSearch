@@ -1,6 +1,7 @@
 package com.leagueofdevs.demomoviesearch.data.di
 
 import android.content.Context
+import androidx.room.Room
 import com.leagueofdevs.demomoviesearch.data.FavoriteMovieDao
 import com.leagueofdevs.demomoviesearch.data.db.MoviesDatabase
 import dagger.Module
@@ -17,11 +18,14 @@ class DatabaseModule {
     @Singleton
     @Provides
     fun provideAppDatabase(@ApplicationContext context: Context): MoviesDatabase {
-        return MoviesDatabase.getInstance(context)
+        return Room.databaseBuilder(
+            context.applicationContext,
+            MoviesDatabase::class.java,
+            "Movies.db"
+        ).build()
     }
 
     @Provides
-    fun provideFavoriteMovieDao(favoriteMovieDatabase: MoviesDatabase): FavoriteMovieDao {
-        return favoriteMovieDatabase.movieDao()
-    }
+    fun provideFavoriteMovieDao(favoriteMovieDatabase: MoviesDatabase): FavoriteMovieDao =
+        favoriteMovieDatabase.movieDao()
 }
