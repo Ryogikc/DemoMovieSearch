@@ -18,7 +18,9 @@ import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
+import androidx.compose.material.Snackbar
 import androidx.compose.material.Text
+import androidx.compose.material.TextButton
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -164,6 +166,7 @@ fun HomeScreen(
                     )
                 }
             })
+        Snackbar()
     }
 }
 
@@ -188,6 +191,27 @@ fun FavoriteScreen(
         )
         Spacer(Modifier.height(16.dp))
         FavoriteMovieGrid(favoriteMovieList)
+    }
+}
+
+@Composable
+fun Snackbar(favoritesViewModel: FavoritesViewModel = hiltViewModel(),) {
+    val showSnackbar by favoritesViewModel.showSnackbar.collectAsState()
+
+    if (showSnackbar) {
+        Snackbar(
+            modifier = Modifier.padding(16.dp),
+            action = {
+                TextButton(onClick = {
+                    // Realiza alguna acción cuando se presione el botón de acción del Snackbar
+
+                }) {
+                    Text(text = "Aceptar")
+                }
+            }
+        ) {
+            Text(text = "Mensaje del Snackbar")
+        }
     }
 }
 
