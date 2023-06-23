@@ -5,6 +5,7 @@ import com.leagueofdevs.demomoviesearch.domain.CreateFavoriteMovieUseCase
 import com.leagueofdevs.demomoviesearch.domain.FavoriteMovie
 import com.leagueofdevs.demomoviesearch.domain.GetFavoriteMoviesUseCase
 import com.leagueofdevs.demomoviesearch.domain.IsMovieFavoriteUseCase
+import com.leagueofdevs.demomoviesearch.domain.DeleteFavoriteByIdUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
@@ -14,6 +15,7 @@ class FavoritesViewModel @Inject internal constructor(
     getFavoriteMoviesUseCase: GetFavoriteMoviesUseCase,
     private val isFavoriteMovieUseCase: IsMovieFavoriteUseCase,
     private val createFavoriteMovieUseCase: CreateFavoriteMovieUseCase,
+    private val deleteFavoriteByIdUseCase: DeleteFavoriteByIdUseCase,
 ) : ViewModel() {
 
     val favoriteMovieList: Flow<List<FavoriteMovie>> = getFavoriteMoviesUseCase()
@@ -25,11 +27,14 @@ class FavoritesViewModel @Inject internal constructor(
         plot: String,
         poster: String
     ) {
-
         if(isFavoriteMovieUseCase(imdbId)) {
             // variable de estado que ya existe
         } else {
             createFavoriteMovieUseCase(imdbId, title, genre, plot, poster)
         }
+    }
+
+    suspend fun deleteFavoriteById(imdbId: String) {
+        deleteFavoriteByIdUseCase(imdbId)
     }
 }
