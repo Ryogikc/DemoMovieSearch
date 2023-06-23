@@ -15,6 +15,7 @@ import com.leagueofdevs.demomoviesearch.domain.FavoriteMovie
 fun FavoriteMovieGrid(
     favoritesList: List<FavoriteMovie>,
     modifier: Modifier = Modifier,
+    onDeleteFavoriteClick: (FavoriteMovie) -> Unit,
 ) {
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
@@ -27,7 +28,10 @@ fun FavoriteMovieGrid(
             items = favoritesList,
             key = { it.imdbID }
         ) { favorite ->
-            FavoriteItem(favoriteMovie = favorite)
+            FavoriteItem(
+                favoriteMovie = favorite,
+                onDeleteFavoriteClick = onDeleteFavoriteClick,
+            )
         }
     }
 }

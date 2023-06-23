@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.Card
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -22,12 +23,15 @@ import coil.compose.rememberAsyncImagePainter
 import com.leagueofdevs.demomoviesearch.R
 import com.leagueofdevs.demomoviesearch.domain.FavoriteMovie
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun FavoriteItem(
     modifier: Modifier = Modifier,
     favoriteMovie: FavoriteMovie,
+    onDeleteFavoriteClick: (FavoriteMovie) -> Unit,
 ) {
     Card(
+        onClick = {onDeleteFavoriteClick(favoriteMovie)},
         elevation = dimensionResource(id = R.dimen.card_elevation),
         shape = MaterialTheme.shapes.card,
         modifier = modifier
