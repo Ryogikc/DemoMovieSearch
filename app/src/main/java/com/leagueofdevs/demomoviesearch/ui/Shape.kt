@@ -12,8 +12,8 @@ val shapes = Shapes(
 
 val Shapes.card: CornerBasedShape
     get() = RoundedCornerShape(
-        topStart = 0.dp,
+        topStart = 12.dp,
         topEnd = 12.dp,
         bottomStart = 12.dp,
-        bottomEnd = 0.dp
+        bottomEnd = 12.dp
     )

@@ -115,6 +115,7 @@ dependencies {
 
     // Testing
     testImplementation "junit:junit:$rootProject.junitVersion"
+    testImplementation 'io.mockk:mockk:1.12.4'
     androidTestImplementation "androidx.arch.core:core-testing:$rootProject.coreTestingVersion"
     androidTestImplementation("androidx.test.espresso:espresso-core:$rootProject.espressoVersion", {
         exclude group: 'com.android.support', module: 'support-annotations'

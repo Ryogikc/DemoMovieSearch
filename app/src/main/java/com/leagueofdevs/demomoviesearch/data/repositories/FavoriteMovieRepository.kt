@@ -31,4 +31,5 @@ class FavoriteMovieRepository @Inject constructor(
 
     suspend fun isMovieFavorite(imdbID: String) = favoriteMovieDao.isFavoriteMovie(imdbID)
 
+    suspend fun deleteFavoriteById(imdbID: String) = favoriteMovieDao.deleteFavoriteMovie(imdbID)
 }

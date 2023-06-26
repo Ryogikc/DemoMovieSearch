@@ -5,6 +5,7 @@ import com.leagueofdevs.demomoviesearch.domain.CreateFavoriteMovieUseCase
 import com.leagueofdevs.demomoviesearch.domain.FavoriteMovie
 import com.leagueofdevs.demomoviesearch.domain.GetFavoriteMoviesUseCase
 import com.leagueofdevs.demomoviesearch.domain.IsMovieFavoriteUseCase
+import com.leagueofdevs.demomoviesearch.domain.DeleteFavoriteByIdUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,6 +18,7 @@ class FavoritesViewModel @Inject internal constructor(
     getFavoriteMoviesUseCase: GetFavoriteMoviesUseCase,
     private val isFavoriteMovieUseCase: IsMovieFavoriteUseCase,
     private val createFavoriteMovieUseCase: CreateFavoriteMovieUseCase,
+    private val deleteFavoriteByIdUseCase: DeleteFavoriteByIdUseCase,
 ) : ViewModel() {
     private val _showSnackbar = MutableStateFlow(false)
     val showSnackbar: StateFlow<Boolean> = _showSnackbar.asStateFlow()
@@ -31,7 +33,6 @@ class FavoritesViewModel @Inject internal constructor(
         plot: String,
         poster: String
     ) {
-
         if(isFavoriteMovieUseCase(imdbId)) {
             // variable de estado que ya existe
             _showSnackbar.value = true
@@ -39,5 +40,9 @@ class FavoritesViewModel @Inject internal constructor(
             _showSnackbar.value = false
             createFavoriteMovieUseCase(imdbId, title, genre, plot, poster)
         }
+    }
+
+    suspend fun deleteFavoriteById(imdbId: String) {
+        deleteFavoriteByIdUseCase(imdbId)
     }
 }

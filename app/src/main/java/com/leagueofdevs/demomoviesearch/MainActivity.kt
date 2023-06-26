@@ -175,6 +175,8 @@ fun FavoriteScreen(
     favoritesViewModel: FavoritesViewModel = hiltViewModel(),
 ) {
     val favoriteMovieList by favoritesViewModel.favoriteMovieList.collectAsState(initial = emptyList())
+    val coroutineScope = rememberCoroutineScope()
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -190,7 +192,11 @@ fun FavoriteScreen(
                 .align(alignment = Alignment.CenterHorizontally)
         )
         Spacer(Modifier.height(16.dp))
-        FavoriteMovieGrid(favoriteMovieList)
+        FavoriteMovieGrid(favoriteMovieList, onDeleteFavoriteClick = {
+            coroutineScope.launch {
+                favoritesViewModel.deleteFavoriteById(it.imdbID,)
+            }
+        })
     }
 }
 
