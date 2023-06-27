@@ -7,4 +7,5 @@
     <string name="bottom_navigation_home">Home</string>
     <string name="bottom_navigation_favorites">Favorites</string>
     <string name="noneImage">N/A</string>
+    <string name="snack_bar_favorite_added">It´s already in Favorites</string>
 </resources>
