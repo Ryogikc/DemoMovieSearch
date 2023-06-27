@@ -158,6 +158,7 @@ fun HomeScreen(
         )
         ButtonLayout()
         Spacer(Modifier.height(16.dp))
+        Snackbar()
         MovieGrid(galleryUiState.list,
             onAddFavoriteClick = {
                 coroutineScope.launch {
@@ -166,7 +167,6 @@ fun HomeScreen(
                     )
                 }
             })
-        Snackbar()
     }
 }
 
@@ -209,14 +209,13 @@ fun Snackbar(favoritesViewModel: FavoritesViewModel = hiltViewModel(),) {
             modifier = Modifier.padding(16.dp),
             action = {
                 TextButton(onClick = {
-                    // Realiza alguna acción cuando se presione el botón de acción del Snackbar
-
+                    favoritesViewModel.dismissSnackBar()
                 }) {
                     Text(text = "Aceptar")
                 }
             }
         ) {
-            Text(text = "Mensaje del Snackbar")
+            Text(text = stringResource(R.string.snack_bar_favorite_added))
         }
     }
 }

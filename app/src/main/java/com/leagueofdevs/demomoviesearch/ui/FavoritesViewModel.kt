@@ -25,7 +25,6 @@ class FavoritesViewModel @Inject internal constructor(
 
     val favoriteMovieList: Flow<List<FavoriteMovie>> = getFavoriteMoviesUseCase()
 
-
     suspend fun newFavoriteMovie(
         imdbId: String,
         title: String,
@@ -34,7 +33,6 @@ class FavoritesViewModel @Inject internal constructor(
         poster: String
     ) {
         if(isFavoriteMovieUseCase(imdbId)) {
-            // variable de estado que ya existe
             _showSnackbar.value = true
         } else {
             _showSnackbar.value = false
@@ -44,5 +42,9 @@ class FavoritesViewModel @Inject internal constructor(
 
     suspend fun deleteFavoriteById(imdbId: String) {
         deleteFavoriteByIdUseCase(imdbId)
+    }
+
+    fun dismissSnackBar(){
+        _showSnackbar.value = false
     }
 }
