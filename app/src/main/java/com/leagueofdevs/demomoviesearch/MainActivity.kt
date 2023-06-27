@@ -194,14 +194,14 @@ fun FavoriteScreen(
         Spacer(Modifier.height(16.dp))
         FavoriteMovieGrid(favoriteMovieList, onDeleteFavoriteClick = {
             coroutineScope.launch {
-                favoritesViewModel.deleteFavoriteById(it.imdbID,)
+                favoritesViewModel.deleteFavoriteById(it.imdbID)
             }
         })
     }
 }
 
 @Composable
-fun Snackbar(favoritesViewModel: FavoritesViewModel = hiltViewModel(),) {
+fun Snackbar(favoritesViewModel: FavoritesViewModel = hiltViewModel()) {
     val showSnackbar by favoritesViewModel.showSnackbar.collectAsState()
 
     if (showSnackbar) {
@@ -211,7 +211,7 @@ fun Snackbar(favoritesViewModel: FavoritesViewModel = hiltViewModel(),) {
                 TextButton(onClick = {
                     favoritesViewModel.dismissSnackBar()
                 }) {
-                    Text(text = "Aceptar")
+                    Text(text = stringResource(id = R.string.ok))
                 }
             }
         ) {
